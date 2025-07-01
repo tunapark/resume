@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function renderPhilosophy() {
   const { narrative, pyramid } = philosophyData;
   const narrativeContainer = document.getElementById("philosophy-narrative");
-  const pyramidContainer = document.getElementById("philosophy-pyramid");
+  const pyramidContainer = document.getElementById("planning-pyramid");
 
   narrative.forEach((item) => {
     const el = document.createElement(item.type);
@@ -21,14 +21,26 @@ function renderPhilosophy() {
   });
 
   pyramid.forEach((item) => {
-    const el = document.createElement("li");
-    el.innerHTML = `<strong>${item.title}:</strong> ${item.content}`;
+    const el = document.createElement("div");
+    el.className = "pyramid-level";
+    el.innerHTML = `<span class="font-bold">${item.title}:</span> ${item.content}`;
     pyramidContainer.appendChild(el);
+
+    if (item !== pyramid[pyramid.length - 1]) {
+      const arrow = document.createElement("div");
+      arrow.className = "pyramid-arrow";
+      arrow.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down w-5 h-5 mx-auto"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+      `;
+      pyramidContainer.appendChild(arrow);
+    }
   });
 }
 
 function renderExperience() {
   const container = document.getElementById("experience-list");
+  if (!container) return;
+
   experienceData.forEach((job) => {
     const el = document.createElement("div");
     el.className = "mb-8";
@@ -36,9 +48,7 @@ function renderExperience() {
       <h3 class="text-xl font-semibold text-text-heading">${job.company}</h3>
       <p class="text-text-secondary">${job.role} | ${job.period}</p>
       <ul class="list-disc list-inside mt-2 space-y-1">
-        ${job.responsibilities
-          .map((item) => `<li class="text-text-secondary">${item}</li>`) 
-          .join("")}
+        ${job.responsibilities.map((item) => `<li class="text-text-secondary">${item}</li>`).join("")}
       </ul>
     `;
     container.appendChild(el);
@@ -46,14 +56,16 @@ function renderExperience() {
 }
 
 function renderProjects() {
-  const container = document.getElementById("projects-list");
+  const container = document.getElementById("projects-grid");
+  if (!container) return;
+
   projectsData.forEach((project) => {
-    const el = document.createElement("div");
-    el.className = "project-entry grid md:grid-cols-2 gap-8 mb-16 items-center";
+    const el = document.createElement("article");
+    el.className = "project-card grid md:grid-cols-2 gap-8 md:gap-12 items-center";
 
     const imageBox = document.createElement("div");
     imageBox.className =
-      "project-image md:order-1 bg-background p-4 md:p-8 rounded-lg border border-border-color";
+      "project-image bg-background p-4 md:p-8 rounded-lg border border-border-color";
 
     if (project.image) {
       imageBox.innerHTML = `
@@ -70,35 +82,37 @@ function renderProjects() {
     }
 
     const textBox = document.createElement("div");
+    textBox.className = "project-details";
     textBox.innerHTML = `
-      <h3 class="text-xl font-bold text-text-heading mb-2">${project.title}</h3>
-      <p class="text-text-secondary mb-4">${project.problem}</p>
-      <p class="text-text-secondary mb-4 font-semibold">→ ${project.reinterpretation}</p>
-      <p class="text-text-secondary mb-4">${project.result}</p>
-      <div class="flex flex-wrap gap-2">
+      <h3 class="text-2xl font-bold text-text-heading">${project.title}</h3>
+      <p class="text-accent font-semibold mt-1">${project.company}</p>
+      <div class="my-4 flex flex-wrap gap-2">
         ${project.tags
-          .map(
-            (tag) =>
-              `<span class="bg-accent/10 text-accent px-2 py-1 rounded text-sm">${tag}</span>`
-          )
+          .map((tag) => `<span class="project-tag">${tag}</span>`)
           .join("")}
+      </div>
+      <div class="mt-6 space-y-4 text-text-primary prose max-w-none">
+        <p><strong class="text-text-heading">[문제 정의]</strong> ${project.problem}</p>
+        <p><strong class="text-text-heading">[관점의 재해석]</strong> ${project.reinterpretation}</p>
+        <p><strong class="text-text-heading">[결과 및 성과]</strong> ${project.result}</p>
       </div>
       ${
         project.stat
-          ? `<p class="mt-2 text-sm text-text-secondary">📊 <strong>${project.stat.value}</strong> – ${project.stat.label}</p>`
+          ? `<div class="mt-6"><span class="project-stat">${project.stat.value}</span><p class="text-text-secondary text-sm">${project.stat.label}</p></div>`
           : ""
       }
     `;
 
-    el.appendChild(imageBox);
-    el.appendChild(textBox);
+    el.appendChild(project.image ? imageBox : textBox);
+    el.appendChild(project.image ? textBox : imageBox);
     container.appendChild(el);
   });
 }
 
-
 function renderCompetencies() {
   const container = document.getElementById("competencies-list");
+  if (!container || !competenciesData?.details) return;
+
   competenciesData.details.forEach((comp) => {
     const el = document.createElement("div");
     el.className = "competency-card";
