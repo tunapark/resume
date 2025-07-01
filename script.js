@@ -78,11 +78,16 @@ function renderProjects() {
       <div class="flex flex-wrap gap-2">
         ${project.tags
           .map(
-            (tag) => `<span class="bg-accent/10 text-accent px-2 py-1 rounded text-sm">${tag}</span>`
+            (tag) =>
+              `<span class="bg-accent/10 text-accent px-2 py-1 rounded text-sm">${tag}</span>`
           )
           .join("")}
       </div>
-      ${project.stat ? `<p class="mt-2 text-sm text-text-secondary">📊 <strong>${project.stat.value}</strong> – ${project.stat.label}</p>` : ""}
+      ${
+        project.stat
+          ? `<p class="mt-2 text-sm text-text-secondary">📊 <strong>${project.stat.value}</strong> – ${project.stat.label}</p>`
+          : ""
+      }
     `;
 
     el.appendChild(imageBox);
@@ -90,6 +95,7 @@ function renderProjects() {
     container.appendChild(el);
   });
 }
+
 
 function renderCompetencies() {
   const container = document.getElementById("competencies-list");
