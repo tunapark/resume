@@ -44,6 +44,30 @@ function setupMobileMenu() {
 
 
 function setupNavigation() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function activateNavLink() {
+        let scrollY = window.pageYOffset;
+
+        sections.forEach(current => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop - 100;
+            const sectionId = current.getAttribute('id');
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('text-accent');
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('text-accent');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', activateNavLink);
+
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('main section');
 
