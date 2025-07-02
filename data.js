@@ -61,6 +61,7 @@ export const projectsData = [
     {
         title: "오설록 '선물하기' 서비스 리딩 및 채널 리포지셔닝",
         company: "오설록",
+        image: "/resume/osulloc.png",
         tags: ["Product Ownership", "BX/CX 설계", "E-Commerce"],
         problem: "기능적(가격/배송) 우위 확보가 어려운 자사몰의 명확한 정체성과 핵심 성장 동력이 부재했습니다.",
         reinterpretation: "'판매 채널'에서 '가치를 선물하는 브랜드 경험 채널'로 포지셔닝을 전환했습니다. 브랜드 철학을 디지털 고객 여정으로 번역하여, 사용자가 '선물'이라는 감성적 가치를 온전히 느낄 수 있는 구조를 설계했습니다.",
@@ -71,6 +72,7 @@ export const projectsData = [
     {
         title: "당근마켓 글로벌 유저 리텐션 전략",
         company: "당근마켓",
+        image: "/resume/daangn.png",
         tags: ["데이터 분석", "Growth", "Global Strategy"],
         problem: "북미/영국 유저들의 탐색 과정 이탈률이 높았고, 재방문을 유도할 개인화된 장치가 부족했습니다.",
         reinterpretation: "정량 데이터(로그) 분석으로 '무엇'이 문제인지 파악하고, 문화적 맥락에 기반한 정성적 가설로 '왜' 그런지를 추론했습니다. 이는 단순 푸시 알림이 아닌, 사용자의 '놓친 기회'를 되찾아주는 '데이터 기반 공감(Data-driven Empathy)' 전략이었습니다.",
@@ -81,6 +83,7 @@ export const projectsData = [
     {
         title: "소비 SNS 앱 '위니' 브랜딩 및 MVP 기획",
         company: "팀 위니 (사이드 프로젝트)",
+        image: "/resume/winey.png",
         tags: ["Branding", "User Research", "MVP"],
         problem: "'절약'이라는 기능적 메시지가 사용자에게 '궁핍'의 감정을 유발하여 서비스 확장성에 한계를 보였습니다.",
         reinterpretation: "사용자 심층 인터뷰를 통해 '절약'의 본질이 '현명한 소비'이며, 이는 '나만의 취향을 쌓아가는 과정'이라는 인사이트를 발견했습니다. 브랜드 핵심 가치를 기능이 아닌 '자기표현'이라는 감성적 가치로 재정의했습니다.",
