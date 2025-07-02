@@ -42,7 +42,6 @@ function setupMobileMenu() {
     });
 }
 
-
 function setupNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('main section');
@@ -62,7 +61,7 @@ function setupNavigation() {
         });
 
         if (activeSectionId) {
-             navLinks.forEach(link => {
+            navLinks.forEach(link => {
                 link.classList.remove('active');
                 const href = link.getAttribute('href');
                 if (href === `#${activeSectionId}`) {
@@ -75,6 +74,17 @@ function setupNavigation() {
     sections.forEach(section => {
         observer.observe(section);
     });
+
+    // ✅ 페이지 로딩 시 hash 기준으로 초기 active 처리
+    const currentHash = window.location.hash;
+    if (currentHash) {
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === currentHash) {
+                link.classList.add('active');
+            }
+        });
+    }
 }
 
 function renderPhilosophy() {
@@ -178,62 +188,6 @@ function renderCompetencies() {
     lucide.createIcons();
 }
 
-function createCompetenciesChart() {
-    const ctx = document.getElementById('competencies-chart').getContext('2d');
-    new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: competenciesData.chart.labels,
-            datasets: [{
-                label: '역량',
-                data: competenciesData.chart.data,
-                backgroundColor: 'rgba(10, 77, 104, 0.2)',
-                borderColor: 'rgb(10, 77, 104)',
-                pointBackgroundColor: 'rgb(10, 77, 104)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgb(10, 77, 104)',
-                borderWidth: 2,
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            scales: {
-                r: {
-                    angleLines: {
-                        color: 'rgba(0, 0, 0, 0.08)'
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.08)'
-                    },
-                    pointLabels: {
-                        font: {
-                            size: 13,
-                            family: "'Noto Sans KR', sans-serif",
-                            weight: '500'
-                        },
-                        color: '#2d3748'
-                    },
-                    ticks: {
-                        backdropColor: 'transparent',
-                        stepSize: 2,
-                        font: {
-                            size: 10
-                        }
-                    },
-                    suggestedMin: 0,
-                    suggestedMax: 10
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-}
 
 function setupScrollAnimations() {
     const elementsToAnimate = document.querySelectorAll('.project-card, .competency-card, .experience-card, #philosophy-narrative, #planning-pyramid');
