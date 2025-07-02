@@ -69,7 +69,6 @@ function renderProjects() {
     container.appendChild(el);
   });
 }
-
 function renderCompetencies() {
   const container = document.getElementById("competencies-list");
 
