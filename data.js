@@ -69,7 +69,7 @@ export const projectsData = [
   {
     title: "오설록 '선물하기' 서비스 리딩 및 채널 리포지셔닝",
     company: "오설록",
-    image: "osulloc.png",
+    image: "/resume/osulloc.png",
     tags: ["Product Ownership", "BX/CX 설계", "E-Commerce"],
     problem: "기능적(가격/배송) 우위 확보가 어려운 자사몰의 명확한 정체성과 핵심 성장 동력이 부재했습니다.",
     reinterpretation:
@@ -82,7 +82,7 @@ export const projectsData = [
   {
     title: "당근마켓 글로벌 유저 리텐션 전략",
     company: "당근마켓",
-    image: "daangn.png",
+    image: "/resume/daangn.png",
     tags: ["데이터 분석", "Growth", "Global Strategy"],
     problem:
       "북미/영국 유저들의 탐색 과정 이탈률이 높았고, 재방문을 유도할 개인화된 장치가 부족했습니다.",
@@ -96,7 +96,7 @@ export const projectsData = [
   {
     title: "소비 SNS 앱 '위니' 브랜딩 및 MVP 기획",
     company: "팀 위니 (사이드 프로젝트)",
-    image: "winey.png",
+    image: "/resume/winey.png",
     tags: ["Branding", "User Research", "MVP"],
     problem:
       "'절약'이라는 기능적 메시지가 사용자에게 '궁핍'의 감정을 유발하여 서비스 확장성에 한계를 보였습니다.",
