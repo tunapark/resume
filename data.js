@@ -108,3 +108,31 @@ export const projectsData = [
     visual_placeholder: "리포지셔닝 전후의 브랜드 키워드 및 사용자 반응 비교",
   },
 ];
+export const competenciesData = [
+  {
+    title: "Product Ownership",
+    description: "비즈니스 목표와 사용자 가치를 연결하여 제품 비전과 로드맵을 설정하고, 실행을 통해 성과를 만들어냅니다.",
+  },
+  {
+    title: "Brand Strategy & BX Design",
+    description: "브랜드의 추상적 철학을 고객이 경험할 수 있는 구체적인 디지털 여정, 기능, 콘텐츠로 전환합니다.",
+  },
+  {
+    title: "Data-driven Growth",
+    description: "SQL, Python 등을 활용해 데이터를 분석하고 가설을 검증하며, 서비스의 핵심 지표를 개선하고 성장을 주도합니다.",
+  },
+  {
+    title: "E-Commerce Strategy",
+    description: "고객의 유입-탐색-구매-재방문 퍼널을 구조적으로 설계하고, 전환율과 고객 만족도를 동시에 최적화합니다.",
+  },
+  {
+    title: "Agile Communication",
+    description: "개발자, 디자이너, 마케터 등 다양한 직군과 투명하고 효율적으로 소통하며 아이디어를 제품으로 구현합니다.",
+  },
+  {
+    title: "Technical Literacy",
+    description: "API 명세, 시스템 아키텍처 등 기술적 제약을 이해하고, 개발자와 긴밀하게 협업하여 실현 가능한 기획을 합니다.",
+  }
+];
+
+
