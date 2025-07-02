@@ -49,11 +49,12 @@ function setupNavigation() {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.4,
+        threshold: 0.2  // ✅ 0.4 → 0.2로 완화
     };
 
     const observer = new IntersectionObserver((entries) => {
         let activeSectionId = null;
+
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 activeSectionId = entry.target.getAttribute('id');
@@ -75,17 +76,15 @@ function setupNavigation() {
         observer.observe(section);
     });
 
-    // ✅ 페이지 로딩 시 hash 기준으로 초기 active 처리
-    const currentHash = window.location.hash;
-    if (currentHash) {
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === currentHash) {
-                link.classList.add('active');
-            }
+    // ✅ 클릭 시 강제 active 추가 (스크롤 안 되더라도 확실히 동작하게)
+    navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
         });
-    }
+    });
 }
+
 
 function renderPhilosophy() {
     const narrativeContainer = document.getElementById('philosophy-narrative');
