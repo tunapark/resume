@@ -56,30 +56,39 @@ function renderExperience() {
 }
 
 function renderProjects() {
-  const container = document.getElementById("projects-grid");
-  if (!container) return;
-
-  projectsData.forEach((project) => {
-    const el = document.createElement("article");
-    el.className = "project-card grid md:grid-cols-2 gap-8 md:gap-12 items-center";
-
-    const imageBox = document.createElement("div");
-    imageBox.className =
-      "project-image bg-background p-4 md:p-8 rounded-lg border border-border-color";
-
-    if (project.image) {
-      imageBox.innerHTML = `
-        <div class="bg-white rounded shadow-md aspect-video overflow-hidden">
-          <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" />
-        </div>
-      `;
-    } else {
-      imageBox.innerHTML = `
-        <div class="bg-white rounded shadow-md aspect-video flex items-center justify-center text-center p-4">
-          <p class="text-text-secondary italic">${project.visual_placeholder}</p>
-        </div>
-      `;
-    }
+    const grid = document.getElementById('projects-grid');
+    grid.innerHTML = projectsData.map((project, index) => `
+        <article class="project-card grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div class="project-details ${index % 2 !== 0 ? 'md:order-2' : ''}">
+                <h3 class="text-2xl font-bold text-text-heading">${project.title}</h3>
+                <p class="text-accent font-semibold mt-1">${project.company}</p>
+                <div class="my-4 flex flex-wrap gap-2">
+                    ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                </div>
+                <div class="mt-6 space-y-4 text-text-primary prose max-w-none">
+                    <p><strong class="text-text-heading">[문제 정의]</strong> ${project.problem}</p>
+                    <p><strong class="text-text-heading">[관점의 재해석]</strong> ${project.reinterpretation}</p>
+                    <p><strong class="text-text-heading">[결과 및 성과]</strong> ${project.result}</p>
+                </div>
+                ${project.stat ? `
+                <div class="mt-6">
+                    <span class="project-stat">${project.stat.value}</span>
+                    <p class="text-text-secondary text-sm">${project.stat.label}</p>
+                </div>
+                ` : ''}
+            </div>
+            <div class="project-image ${index % 2 !== 0 ? 'md:order-1' : ''} bg-background p-4 md:p-8 rounded-lg border border-border-color">
+                ${
+                    project.image
+                        ? `<img src="${project.image}" alt="${project.title}" class="rounded shadow-md w-full">`
+                        : `<div class="bg-white rounded shadow-md aspect-video flex items-center justify-center text-center p-4">
+                               <p class="text-text-secondary italic">${project.visual_placeholder}</p>
+                           </div>`
+                }
+            </div>
+        </article>
+    `).join('');
+}
 
     const textBox = document.createElement("div");
     textBox.className = "project-details";
