@@ -123,9 +123,10 @@ function renderExperience() {
     `).join('');
 }
 
-
 function renderProjects() {
     const grid = document.getElementById('projects-grid');
+    const baseImageURL = "https://tunapark.github.io";
+
     grid.innerHTML = projectsData.map((project, index) => `
         <article class="project-card grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div class="project-details ${index % 2 !== 0 ? 'md:order-2' : ''}">
@@ -138,7 +139,7 @@ function renderProjects() {
                     <p><strong class="text-text-heading">[관점의 재해석]</strong> ${project.reinterpretation}</p>
                     <p><strong class="text-text-heading">[결과 및 성과]</strong> ${project.result}</p>
                 </div>
-                 ${project.stat ? `
+                ${project.stat ? `
                 <div class="mt-6">
                     <span class="project-stat">${project.stat.value}</span>
                     <p class="text-text-secondary text-sm">${project.stat.label}</p>
@@ -147,7 +148,11 @@ function renderProjects() {
             </div>
             <div class="project-image ${index % 2 !== 0 ? 'md:order-1' : ''} bg-background p-4 md:p-8 rounded-lg border border-border-color">
                 <div class="bg-white rounded shadow-md aspect-video flex items-center justify-center text-center p-4">
-                    <p class="text-text-secondary italic">${project.visual_placeholder}</p>
+                    ${
+                        project.image
+                            ? `<img src="${baseImageURL}${project.image}" alt="${project.title}" class="max-h-full max-w-full object-contain" />`
+                            : `<p class="text-text-secondary italic">${project.visual_placeholder}</p>`
+                    }
                 </div>
             </div>
         </article>
